@@ -69,5 +69,15 @@ abstract class DbTable
             $this->_classToMap
         );
     }
+    public function fetchOne($search,$column = ''){
+        empty($column) ? $column = $this->_primary : null;
+
+        $sth = $this->_db->prepare('SELECT * FROM ' . $this->_table . ' WHERE '. $column . ' = :search' );
+    $sth->bindValue(':search' , $search,\PDO::PARAM_STR);
+    $sth->execute();
+    $sth->setFetchMode(\PDO::FETCH_CLASS,$this->_classToMap);
+    return $sth->fetch();
+
+    }
 
 }

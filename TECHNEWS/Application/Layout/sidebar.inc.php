@@ -11,9 +11,23 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab1">
             <ul class="list-news-popular">
-                <?php
-                foreach ($sidebar as $side)
-                ?>
+                <?php foreach ($sidebar as $side) { ?>
+                    <li>
+                        <a href="#">
+                            <img alt="<?=$side->getTITREARTICLE() ?>" src="<?= PATH_PUBLIC ?>/images/product/<?= $side->getFEATUREDIMAGEARTICLE(); ?>">
+                        </a>
+                        <h3><a href="#"><?= $side->getTITREARTICLE(); ?></a></h3>
+                        <div class="meta-post">
+                            <a href="#">
+                                <?= $side->getAUTEUROBJ()->getNOMCOMPLET()?>
+                            </a>
+                            <em></em>
+                            <span>
+							<?= $side->getDATECREATIONARTICLE(); ?>
+						</span>
+                        </div>
+                    </li>
+                <?php } ?>
             <!-- <li>
                     <a href="#">
                         <img alt="" src="images/product/8.jpg">
@@ -151,22 +165,24 @@
 			</span>
         </div>
         <div class="list-special">
+            <?php foreach ($special as $article){?>
             <article class="news-two-large">
                 <a href="#">
-                    <img alt="" src="images/product/4.jpg">
+                    <img alt="<?= $article->getTITREARTICLE() ?>" src="<?= $article->getFULLIMAGEARTICLE()?>">
                 </a>
-                <h3><a href="#">Six big ways MacOS Sierra is going to change your Apple experience</a></h3>
+                <h3><a href="#"><?= $article->getTITREARTICLE()?></a></h3>
                 <div class="meta-post">
                     <a href="#">
-                        Sue	Benson
+                        <?=$article->getAUTEUROBJ()->getNOMCOMPLET(); ?>
                     </a>
                     <em></em>
                     <span>
-						23 Sep 2016
+						<?= $article->getDATECREATIONARTICLE() ?>
 					</span>
                 </div>
 
             </article>
+            <?php }?>
         </div>
     </div>
 </div>

@@ -11,17 +11,17 @@ namespace Application\Model\Auteur;
 
 class Auteur
 {
-    private $_IDAUTEUR,
-            $_NOMAUTEUR,
-            $_PRENOMAUTEUR,
-            $_EMAILAUTEUR;
+    private $IDAUTEUR,
+            $NOMAUTEUR,
+            $PRENOMAUTEUR,
+            $EMAILAUTEUR;
 
     /**
      * @return mixed
      */
     public function getIDAUTEUR()
     {
-        return $this->_IDAUTEUR;
+        return $this->IDAUTEUR;
     }
 
     /**
@@ -29,7 +29,7 @@ class Auteur
      */
     public function getNOMAUTEUR()
     {
-        return $this->_NOMAUTEUR;
+        return $this->NOMAUTEUR;
     }
 
     /**
@@ -37,7 +37,10 @@ class Auteur
      */
     public function getPRENOMAUTEUR()
     {
-        return $this->_PRENOMAUTEUR;
+        return $this->PRENOMAUTEUR;
+    }
+    public function getNOMCOMPLET(){
+        return $this->PRENOMAUTEUR ." ". $this->NOMAUTEUR;
     }
 
     /**
@@ -45,7 +48,7 @@ class Auteur
      */
     public function getEMAILAUTEUR()
     {
-        return $this->_EMAILAUTEUR;
+        return $this->EMAILAUTEUR;
     }
 
 

@@ -17,7 +17,9 @@ $sidebar = $articleDb->fetchAll(
         'DATECREATIONARTICLE DESC',
         5
 );
-$this->debug($sidebar);
+#Recuperation des articles en position "Speciale"
+$special = $articleDb->fetchAll('SPECIALARTICLE = 1')
+#$this->debug($sidebar);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -9,24 +9,55 @@
 namespace Application\Model\Article;
 
 
+use Application\Model\Auteur\AuteurDb;
+use Application\Model\Categorie\CategorieDb;
+use Core\Model\DbTable;
+
 class Article
 {
-    private $_IDARTICLE,
-            $_IDAUTEUR,
-            $_IDCATEGORIE,
-            $_TITREARTICLE,
-            $_CONTENUARTICLE,
-            $_FEATUREDIMAGEARTICLE,
-            $_SPECIALARTICLE,
-            $_SPOTLIGHTARTICLE,
-            $_DATECREATIONARTICLE;
+    private $IDARTICLE,
+            $IDAUTEUR,
+            $IDCATEGORIE,
+            $TITREARTICLE,
+            $CONTENUARTICLE,
+            $FEATUREDIMAGEARTICLE,
+            $SPECIALARTICLE,
+            $SPOTLIGHTARTICLE,
+            $DATECREATIONARTICLE,
+            $CATEGORIEOBJ,
+            $AUTEUROBJ;
+    public function __construct()
+    {
+        #L'appel au constructeur se fait de façon automatique par la classee PDO !
+        $categorieDb = new CategorieDb();
+        $auterDb = new AuteurDb();
+        $this->AUTEUROBJ = $auterDb->fetchOne($this->IDAUTEUR);
+        $this->CATEGORIEOBJ = $categorieDb->fetchOne($this->IDCATEGORIE);
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCATEGORIEOBJ()
+    {
+        return $this->CATEGORIEOBJ;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAUTEUROBJ()
+    {
+        return $this->AUTEUROBJ;
+    }
 
     /**
      * @return mixed
      */
     public function getIDARTICLE()
     {
-        return $this->_IDARTICLE;
+        return $this->IDARTICLE;
     }
 
     /**
@@ -34,7 +65,7 @@ class Article
      */
     public function getIDAUTEUR()
     {
-        return $this->_IDAUTEUR;
+        return $this->IDAUTEUR;
     }
 
     /**
@@ -42,7 +73,7 @@ class Article
      */
     public function getIDCATEGORIE()
     {
-        return $this->_IDCATEGORIE;
+        return $this->IDCATEGORIE;
     }
 
     /**
@@ -50,7 +81,7 @@ class Article
      */
     public function getTITREARTICLE()
     {
-        return $this->_TITREARTICLE;
+        return $this->TITREARTICLE;
     }
 
     /**
@@ -58,7 +89,7 @@ class Article
      */
     public function getCONTENUARTICLE()
     {
-        return $this->_CONTENUARTICLE;
+        return $this->CONTENUARTICLE;
     }
 
     /**
@@ -66,7 +97,7 @@ class Article
      */
     public function getFEATUREDIMAGEARTICLE()
     {
-        return $this->_FEATUREDIMAGEARTICLE;
+        return $this->FEATUREDIMAGEARTICLE;
     }
 
     /**
@@ -74,7 +105,7 @@ class Article
      */
     public function getSPECIALARTICLE()
     {
-        return $this->_SPECIALARTICLE;
+        return $this->SPECIALARTICLE;
     }
 
     /**
@@ -82,7 +113,7 @@ class Article
      */
     public function getSPOTLIGHTARTICLE()
     {
-        return $this->_SPOTLIGHTARTICLE;
+        return $this->SPOTLIGHTARTICLE;
     }
 
     /**
@@ -90,7 +121,13 @@ class Article
      */
     public function getDATECREATIONARTICLE()
     {
-        return $this->_DATECREATIONARTICLE;
+        return $this->DATECREATIONARTICLE;
     }
 
+    /**
+     * Retourne l'url complete de l'image de l'article
+     */
+    public function getFULLIMAGEARTICLE(){
+        return PATH_PUBLIC . '/image/product/'.$this->FEATUREDIMAGEARTICLE;
+    }
 }
