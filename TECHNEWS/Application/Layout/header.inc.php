@@ -1,3 +1,24 @@
+<?php
+
+use \Application\Model\Categorie\CategorieDb;
+use \Application\Model\Article\ArticleDb;
+    #Récuperer les categories du site
+    $categorieDb = new CategorieDb();
+    $categories = $categorieDb->fetchAll();
+
+
+    #Pour tester
+    #
+
+#Récuperation des 5 derniers article de la BDD
+$articleDb = new ArticleDb();
+$sidebar = $articleDb->fetchAll(
+        '',
+        'DATECREATIONARTICLE DESC',
+        5
+);
+$this->debug($sidebar);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,7 +43,7 @@
     <link href="<?= PATH_PUBLIC?>css/normalize.min.css" rel="stylesheet" />
     <link href="<?= PATH_PUBLIC?>css/owl.carousel.min.css" rel="stylesheet" />
     <!-- Main CSS (SCSS Compile) -->
-    <link href="<?php PATH_PUBLIC?>css/main.css" rel="stylesheet" />
+    <link href="<?= PATH_PUBLIC ?>css/main.css" rel="stylesheet" />
     <!-- JavaScripts -->
     <!--<script src="js/modernizr.js"></script>-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

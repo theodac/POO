@@ -1,7 +1,9 @@
 <?php
 
+namespace Core;
+use Core\Controller\AppController;
 
-class Core
+class Core extends AppController
 {
     public function __construct($params)
     {
@@ -13,10 +15,30 @@ class Core
             $params['action']     = 'index';
         endif;
         #Recuperation des Parametres
-        $controller = $params['controller'];
-        $action     = $params['action'];
+        $controller = 'Application\Controller\\'.ucfirst($params['controller']).'Controller';
+        $action     = $params['action'].'Action';
+        #On verifie si le controller existe
+        if (file_exists(PATH_ROOT . '\\'. $controller.'.php')) :
 
-        if ($controller == 'news' && $action == 'index'){
+            $obj = new $controller;
+        #Je verifier si l'action est existe
+            if (method_exists($obj , $action)) :
+                $obj->$action();
+            else :
+                $this->render('error/404',[
+                    'message'=>'Ce action n\'existe pas'
+                ]);
+            endif;
+
+        else :
+        $this->render('error/404',[
+            'message'=>'Ce controleur n\'existe pas'
+        ]);
+        endif;
+
+
+
+        /*if ($controller == 'news' && $action == 'index'){
             echo "<h1>Je suis la page d'accueil </h1>";
         }
 
@@ -30,7 +52,8 @@ class Core
 
         if ($controller == 'membre' && $action == 'inscription'){
             echo "<h1>Je suis la page d'inscription </h1>";
-        }
+        }*/
+
     }
 
 }
