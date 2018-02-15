@@ -23,7 +23,8 @@
                             </a>
                             <em></em>
                             <span>
-							<?= $side->getDATECREATIONARTICLE(); ?>
+                                <time datetime="<?= $side->getDATECREATIONARTICLE(); ?>"></time>
+
 						</span>
                         </div>
                     </li>
@@ -177,7 +178,8 @@
                     </a>
                     <em></em>
                     <span>
-						<?= $article->getDATECREATIONARTICLE() ?>
+
+						<time datetime="<?= $article->getDATECREATIONARTICLE(); ?>"></time>
 					</span>
                 </div>
 

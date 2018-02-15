@@ -8,8 +8,8 @@ class Autoloader {
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
     public static function autoload($class){
-        echo 'Autoload pour : ';
-        var_dump($class);
+       // echo 'Autoload pour : ';
+
         echo '<br>';
         require PATH_ROOT . '/' . $class . '.php';
     }

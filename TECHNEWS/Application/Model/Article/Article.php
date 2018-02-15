@@ -130,4 +130,26 @@ class Article
     public function getFULLIMAGEARTICLE(){
         return PATH_PUBLIC . '/image/product/'.$this->FEATUREDIMAGEARTICLE;
     }
+
+    /**
+     * Retourne une accroche de 170 caractères
+     * @return string
+     */
+    public function getACCROCHEARTICLE() {
+
+
+
+
+        $string = strip_tags($this->getCONTENUARTICLE());
+        # Si ma chaine de caractère est supérieur a 170 je poursuis , sinon c'est inutile
+        if (strlen($string) > 170) {
+
+            #Je coupe ma chaine a 170
+            $stringCut = substr($string, 0, 170);
+
+            #Je m'assure de ne pas couper de mot !
+            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+        }
+        return $string;
+    }
 }

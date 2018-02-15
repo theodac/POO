@@ -55,4 +55,12 @@ class AppController
         echo '</pre>';
     }
 
+    /**
+     * Verifie l'existence de valeur dans $_GET['action']
+     * @return string
+     */
+    public function getAction(){
+       return empty($_GET['action']) ? 'accueil' : $_GET['action'];
+    }
+
 }

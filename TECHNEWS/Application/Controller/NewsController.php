@@ -21,8 +21,19 @@ use Core\Controller\AppController;
 class NewsController extends AppController
 {
     public function indexAction(){
+
+        #Connexion a la BDD
+        $articleDb = new ArticleDb;
+
+        #Recuperation des articles
+        $articles = $articleDb->fetchAll();
+
+        #Recuperation des articles en spotlight
+        $spotlight = $articleDb->fetchAll('SPOTLIGHTARTICLE = 1');
+
         $this->render('news/index',[
-            'titre' => 'Webforce3 Rouen !'
+            'articles' => $articles,
+            'spotlight' => $spotlight
         ]);
       #include_once PATH_VIEWS . '/news/index.php';
 
@@ -42,18 +53,21 @@ class NewsController extends AppController
             'articles' => $articles
         ]);
     }
-    public function auteurAction(){
-        $auteurDb = new AuteurDb;
-        $auteurs = $auteurDb->fetchAll();
-        $this->render('news/auteur',[
-            'auteurs' => $auteurs
-        ]);
+    public function businessAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 2');
+        $this->render('news/categorie',['articles'=>$article]);
     }
-    public function tagsAction(){
-        $tagsDb = new TagsDb();
-        $tags = $tagsDb->fetchAll();
-        $this->render('news/tags',[
-            'tags' => $tags
-        ]);
+    public function computingAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 3');
+        $this->render('news/categorie',['articles'=>$article]);
     }
+    public function techAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 4');
+        $this->render('news/categorie',['articles'=>$article]);
+    }
+
+
 }
